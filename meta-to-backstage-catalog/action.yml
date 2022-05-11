@@ -1,0 +1,16 @@
+#action.yml
+name: 'meta-to-backstage-catalog'
+description: 'Reads a project meta.yml data and outputs Backstage catalog config'
+inputs:
+  meta:
+    required: true
+    description: 'Contents of project meta.yml file'
+    default: 'none'
+outputs:
+  catalog-info:
+    description: 'Backstage catalog config'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args: 
+    - ${{ inputs.meta }}
