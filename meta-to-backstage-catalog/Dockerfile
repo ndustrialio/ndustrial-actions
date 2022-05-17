@@ -7,6 +7,7 @@ RUN mkdir app
 RUN pip3 install --upgrade pip
 RUN pip3 install pyyaml pygithub
 
-COPY backstage_yml.py /backstage_yml.py
+COPY entrypoint.sh /entrypoint.sh
+COPY backstage_yml.py /app/backstage_yml.py
 
-ENTRYPOINT [ "python3", "backstage_yml.py", "-y" ]
+ENTRYPOINT ["/entrypoint.sh"]
