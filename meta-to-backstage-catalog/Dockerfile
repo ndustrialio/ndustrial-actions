@@ -2,6 +2,7 @@ FROM alpine:latest
 
 RUN apk update
 RUN apk add python3 python3-dev py3-pip build-base libffi-dev
+RUN mkdir /github
 RUN mkdir /github/workspace
 
 RUN pip3 install --upgrade pip
