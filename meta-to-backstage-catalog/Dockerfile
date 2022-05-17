@@ -11,4 +11,4 @@ COPY backstage_yml.py app/backstage_yml.py
 
 WORKDIR app
 
-ENTRYPOINT [ "python3", "backstage_yml.py", "-y" ]
+ENTRYPOINT [ "python3", "app/backstage_yml.py", "-y" ]
