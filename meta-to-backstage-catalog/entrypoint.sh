@@ -1,2 +1,2 @@
 #!/bin/sh
-python3 backstage_yml.py -y "$i"
+python3 /app/backstage_yml.py -y "$i"
