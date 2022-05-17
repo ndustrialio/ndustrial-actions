@@ -34,7 +34,7 @@ class CreateBackstageConfig(object):
 
         with open(r'./catalog-info.yaml', 'w') as file:
             catalog = yaml.dump(self.component, file)
-        os.system("echo ::set-output name=meta::"+yaml.dump(self.component))
+        os.system("echo ::set-output name=catalog-info::"+yaml.dump(self.component))
         
 #        print(yaml.dump(self.component))
 
@@ -103,7 +103,7 @@ class CreateBackstageConfig(object):
             token = os.getenv('GITHUB_TOKEN')
         return Github(token)
     
-    # Create a Backstage component
+    # Create a Backstage component object based on meta.yml contents
     def generate_component(self, meta):
         # Create component
         component = {
@@ -126,7 +126,7 @@ class CreateBackstageConfig(object):
         return component
 
     def generate_depends(self, metaDepends):
-        # Create depends array
+        # Create depends array from the depend field in meta.yml
         dependsOnList = []
         for dependency in metaDepends:
             if "project" in dependency:
