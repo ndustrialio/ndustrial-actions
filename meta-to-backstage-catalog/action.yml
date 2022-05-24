@@ -22,7 +22,7 @@ runs:
         python -m pip install --upgrade pip setuptools wheel
         python -m pip install --upgrade pyyaml pygithub
       shell: bash
-    - run: python ${{ github.action_path }}/backstage_yml.py {{ inputs.meta }} > ~/catalog-info.yml
+    - run: python ${{ github.action_path }}/backstage_yml.py ${{ inputs.meta }} > ~/catalog-info.yml
       shell: bash
     - name: Check for changes
       run: git status
