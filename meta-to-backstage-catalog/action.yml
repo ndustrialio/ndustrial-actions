@@ -14,7 +14,14 @@ runs:
       uses: actions/setup-python@v3
       with:
         python-version: 3.x
-        architecture: x64    
+        architecture: x64   
+    - name: "Install dependencies"
+      run: |
+        python -VV
+        python -m site
+        python -m pip install --upgrade pip setuptools wheel
+        python -m pip install --upgrade pyyaml
+      shell: bash
     - run: python ${{ github.action_path }}/backstage_yml.py {{ inputs.meta }} > ~/catalog-info.yml
       shell: bash
     - name: Check for changes
