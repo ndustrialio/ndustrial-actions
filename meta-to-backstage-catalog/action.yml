@@ -15,7 +15,7 @@ runs:
       with:
         python-version: 3.x
         architecture: x64    
-    - run: python backstage_yml.py {{ inputs.meta }} > ~/catalog-info.yml
+    - run: python ${{ github.action_path }}/backstage_yml.py {{ inputs.meta }} > ~/catalog-info.yml
       shell: bash
     - name: Check for changes
       run: git status
