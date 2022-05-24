@@ -6,9 +6,6 @@ inputs:
     required: true
     description: 'meta.yml path'
     default: 'none'
-outputs:
-  catalog-info:
-    description: 'Backstage catalog config'
 runs:
   using: 'composite'
   steps:
