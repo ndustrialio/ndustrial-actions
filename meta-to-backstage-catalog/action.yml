@@ -3,7 +3,7 @@ name: 'meta-to-backstage-catalog'
 description: 'Reads a project meta.yml data and outputs + commits Backstage catalog config'
 inputs:
   meta:
-    required: true
+    required: false
     description: 'meta.yml path'
     default: 'none'
 runs:
