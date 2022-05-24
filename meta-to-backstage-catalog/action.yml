@@ -22,13 +22,18 @@ runs:
       shell: bash
     - name: Check for changes
       run: git status
+      shell: bash
     - name: Stage changes
       run: git add .
+      shell: bash
     - name: Config github 
       run: |
         git config --global user.name 'Backstage Automation'
         git config --global user.email 'devops@ndustrial.io'
+      shell: bash
     - name: Commit changes
       run: git commit -m "Auto update"
+      shell: bash      
     - name: Push to master
       run: git push
+      shell: bash
