@@ -1,16 +1,34 @@
 #action.yml
 name: 'meta-to-backstage-catalog'
-description: 'Reads a project meta.yml data and outputs Backstage catalog config'
+description: 'Reads a project meta.yml data and outputs + commits Backstage catalog config'
 inputs:
   meta:
     required: true
-    description: 'Contents of project meta.yml file'
+    description: 'meta.yml path'
     default: 'none'
 outputs:
   catalog-info:
     description: 'Backstage catalog config'
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args: 
-    - ${{ inputs.meta }}
+  using: 'composite'
+  steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.x
+        architecture: x64    
+    - run: python backstage_yml.py {{ inputs.meta }} > ~/catalog-info.yml
+      shell: bash
+    - name: Check for changes
+      run: git status
+    - name: Stage changes
+      run: git add .
+    - name: Config github 
+      run: |
+        git config --global user.name 'Backstage Automation'
+        git config --global user.email 'devops@ndustrial.io'
+    - name: Commit changes
+      run: git commit -m "Auto update"
+    - name: Push to master
+      run: git push
